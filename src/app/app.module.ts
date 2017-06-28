@@ -18,12 +18,25 @@ import {
   Http,
   HttpModule
 } from '@angular/http';
+import { SimpleHttpComponent } from './simple-http/simple-http.component';
+import {
+  YOUTUBE_API_KEY,
+  YOUTUBE_API_URL,
+  youTubeSearchInjectables
+} from './youtube-search.injectables';
+import { SearchBoxComponent } from './search-box/search-box.component';
+import { YoutubeSearchComponent } from './youtube-search/youtube-search.component';
+import { MoreHttpRequestsComponent } from './more-http-requests/more-http-requests.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     DemoFormSkuComponent,
-    DemoFormNgModelComponent
+    DemoFormNgModelComponent,
+    SimpleHttpComponent,
+    SearchBoxComponent,
+    YoutubeSearchComponent,
+    MoreHttpRequestsComponent
   ],
   imports: [
     HttpModule,
@@ -33,6 +46,15 @@ import {
     ReactiveFormsModule
   ],
   providers: [
+    {
+      provide: YOUTUBE_API_KEY,
+      useValue: YOUTUBE_API_KEY
+    },
+    {
+      provide: YOUTUBE_API_URL,
+      useValue: YOUTUBE_API_URL
+    },
+    youTubeSearchInjectables,
     {
       provide: 'API_URL',
       useValue: 'Some value in here'
