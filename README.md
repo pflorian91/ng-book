@@ -26,3 +26,12 @@ Before running the tests make sure you are serving the app via `ng serve`.
 ## Further help
 
 To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+
+Observable
+https://github.com/jhusain/observable-spec
+
+About two-way data binding 
+https://www.quora.com/Why-is-the-two-way-data-binding-being-dropped-in-Angular-2
+
+DI
+https://vsavkin.com/dependency-injection-in-angular-1-and-angular-2-d69589979c18

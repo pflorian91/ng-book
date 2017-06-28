@@ -5,7 +5,7 @@ import {
   OnInit,
   Output
 } from '@angular/core';
-import { Product } from '../product.model';
+import { Product } from '../other/product.model';
 
 @Component({
   selector: 'app-products-list',

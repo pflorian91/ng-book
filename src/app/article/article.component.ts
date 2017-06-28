@@ -4,7 +4,7 @@ import {
   Input,
   OnInit
 } from '@angular/core';
-import { Article } from '../article.model';
+import { Article } from '../other/article.model';
 
 @Component({
   selector: 'app-article',

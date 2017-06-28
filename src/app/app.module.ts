@@ -3,27 +3,63 @@ import { NgModule } from '@angular/core';
 
 import { AppComponent } from './app.component';
 import { FirstModule } from './first-module/first.module';
-import { ProductsListComponent } from './products-list/products-list.component';
-import { ProductRowComponent } from './product-row/product-row.component';
-import { ProductImageComponent } from './product-image/product-image.component';
-import { ProductDepartmentComponent } from './product-department/product-department.component';
-import { PriceDisplayComponent } from './price-display/price-display.component';
+import {
+  FormsModule,
+  ReactiveFormsModule
+} from '@angular/forms';
+import { DemoFormSkuComponent } from './demo-form-sku/demo-form-sku.component';
+import { DemoFormNgModelComponent } from './demo-form-ng-model/demo-form-ng-model.component';
+import { AnalyticsService } from './analytics.service';
+import {
+  AnalyticsImplementation,
+  Metric
+} from './analytics-demo.interface';
+import {
+  Http,
+  HttpModule
+} from '@angular/http';
 
 @NgModule({
   declarations: [
     AppComponent,
-    ProductsListComponent,
-    ProductRowComponent,
-    ProductImageComponent,
-    ProductDepartmentComponent,
-    PriceDisplayComponent
+    DemoFormSkuComponent,
+    DemoFormNgModelComponent
   ],
   imports: [
+    HttpModule,
     BrowserModule,
-    FirstModule
+    FirstModule,
+    FormsModule,
+    ReactiveFormsModule
   ],
-  providers: [],
+  providers: [
+    {
+      provide: 'API_URL',
+      useValue: 'Some value in here'
+    },
+    { // Configurable service sample
+      provide: AnalyticsService,
+      
+      // add our `deps` to specify the factory depencies
+      deps: [Http, 'API_URL' ],
+      
+      // has to match the order of deps parameters
+      useFactory(http: Http, apiUrl: string) {
+        
+        // create an implementation that will log the event
+        const loggingImplementation: AnalyticsImplementation = {
+          recordEvent: (metric: Metric): void => {
+            console.log('The metric is:', metric);
+          }
+        };
+        
+        // create our new `AnalyticsService` with the implementation
+        return new AnalyticsService(loggingImplementation);
+      }
+    }
+  ],
   bootstrap: [AppComponent]
 })
 
-export class AppModule { }
+export class AppModule {
+}
