@@ -29,8 +29,10 @@ To get more help on the Angular CLI use `ng help` or go check out the [Angular C
 
 Observable
 - https://github.com/jhusain/observable-spec
+- https://www.youtube.com/watch?v=VLGCCpOWFFw
+- https://github.com/Reactive-Extensions/RxJS/blob/master/doc/gettingstarted/creating.md#cold-vs-hot-observables
 
-About two-way data binding 
+Two-way data binding 
 - https://www.quora.com/Why-is-the-two-way-data-binding-being-dropped-in-Angular-2
 
 DI
@@ -39,8 +41,24 @@ DI
 JSON
 - http://jsonplaceholder.typicode.com/
 
-Starter
+Starter project
 - https://github.com/AngularClass/angular-starter
 
 RxJS
 - https://github.com/Reactive-Extensions/RxJS/blob/master/doc/api/core/operators/switch.md
+- http://reactivex.io/rxjs/
+
+Fetch
+- https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API
+
+Top-level JSON arrays
+- https://stackoverflow.com/questions/3503102/what-are-top-level-json-arrays-and-why-are-they-a-security-risk
+
+OWASP Wrapped response objects
+- https://www.owasp.org/index.php/AJAX_Security_Cheat_Sheet#Always_return_JSON_with_an_Object_on_the_outside
+
+Response class
+- https://fetch.spec.whatwg.org/#response-class
+
+Imports
+- https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/import
