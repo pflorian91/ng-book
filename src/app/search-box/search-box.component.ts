@@ -1,19 +1,25 @@
 import {
   Component,
+  ElementRef,
   EventEmitter,
   OnInit,
-  Output,
-  ElementRef
+  Output
 } from '@angular/core';
-import { SearchResult } from '../search-result.model';
-import { YouTubeSearchService } from '../youtube-search.service';
+import { YoutubeSearchService } from '../youtube-search.service';
+import { SearchResult } from '../searchResult.model';
 import { Observable } from 'rxjs/Observable';
+import 'rxjs/add/observable/fromEvent';
+import 'rxjs/add/operator/map';
+import 'rxjs/add/operator/filter';
+import 'rxjs/add/operator/debounceTime';
+import 'rxjs/add/operator/do';
+import 'rxjs/add/operator/switch';
 
 @Component({
   selector: 'app-search-box',
-  // templateUrl: './search-box.component.html',
-  template: `<input type="text" class="form-control" placeholder="Search" autofocus>`,
-  styleUrls: ['./search-box.component.css']
+  templateUrl: './search-box.component.html',
+  styleUrls: ['./search-box.component.css'],
+  providers: [YoutubeSearchService]
 })
 
 export class SearchBoxComponent implements OnInit {
@@ -22,22 +28,11 @@ export class SearchBoxComponent implements OnInit {
   @Output() results: EventEmitter<SearchResult[]> = new EventEmitter<SearchResult[]>();
   
   constructor(
-    private youtube: YouTubeSearchService,
+    private youtube: YoutubeSearchService,
     private el: ElementRef
-  ) {
-  }
+  ) { }
   
-  ngOnInit(): void {
-    Observable
-      .fromEvent(this.el.nativeElement, 'keyup')
-      .map((e: any) => e.target.value)
-      .filter((text: string) => text.length > 1)
-      .debounceTime(250)
-      .do(() => this.loading.emit(true))
-    /*.map((query: string) => this.youtube.search(query))
-     .switch()*/;
-    
-    // convert the `keyup` event into an observable stream
+  ngOnInit() {
     Observable.fromEvent(this.el.nativeElement, 'keyup')
       .map((e: any) => e.target.value) // extract the value of the input
       .filter((text: string) => text.length > 1) // filter out if empty
@@ -58,8 +53,8 @@ export class SearchBoxComponent implements OnInit {
         },
         () => { // on completion
           this.loading.emit(false);
-        });
-
+        }
+      );
   }
   
 }

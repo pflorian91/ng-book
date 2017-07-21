@@ -28,6 +28,8 @@ import {
 } from './auth.service';
 import { LoggedInGuard } from './logged-in.guard';
 import { ProductsComponent } from './products/products.component';
+import { HttpSampleComponent } from './http-sample/http-sample.component';
+import { SearchBoxComponent } from './search-box/search-box.component';
 
 const routes: Routes = [
   // basic routes
@@ -60,6 +62,10 @@ const routes: Routes = [
   {
     path: 'search',
     component: SearchComponent,
+  },
+  {
+    path: 'http-sample',
+    component: HttpSampleComponent,
   },
   
   // authentication demo
@@ -109,7 +115,9 @@ const routes: Routes = [
     TrackComponent,
     LoginComponent,
     ProtectedComponent,
-    ProductsComponent
+    ProductsComponent,
+    HttpSampleComponent,
+    SearchBoxComponent
   ],
   imports: [
     BrowserModule,
